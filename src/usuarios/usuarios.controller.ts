@@ -42,6 +42,6 @@ export class UsuariosController {
     // Rota DELETE /usuarios/:id → remove um usuário por ID @Delete(':id')
     remove(@Param('id') id: string) {
         // Chama o método remove() do service, convertendo o ID para número
-        return this.usuariosService.remove(+id);
+        return this.usuariosService.remove(+id); 
     }
 }
