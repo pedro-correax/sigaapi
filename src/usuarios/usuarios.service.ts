@@ -5,9 +5,9 @@ import { PrismaService } from '../prisma.service';
 @Injectable()
 export class UsuariosService {
     constructor(private prisma: PrismaService) { }
-// Esse método é necessário pois o Prisma não fornece automaticamente buscas por campos arbitrários
+    // Esse método é necessário pois o Prisma não fornece automaticamente buscas por campos arbitrários
     async findByEmail(email: string) {
-// Utiliza o método findFirst do Prisma para encontrar o primeiro usuário cujo email corresponde ao fornecido
+        // Utiliza o método findFirst do Prisma para encontrar o primeiro usuário cujo email corresponde ao fornecido
         return await this.prisma.usuario.findFirst({
             where: { email }, // Condição de busca: email igual ao fornecido
         });
@@ -26,29 +26,6 @@ export class UsuariosService {
         });
     }
     // Outras funções que já estavam implementadas seguem normalmente
-}
-
-import { Injectable } from '@nestjs/common';
-// Importa o decorator Injectable do NestJS, que permite que essa classe seja injetada como dependência em outros lugares (como o controller)
-// Importa o PrismaClient, que é o cliente gerado pelo Prisma para interagir com o banco de dados
-import { PrismaClient } from '@prisma/client';
-// Cria uma instância do PrismaClient para acessar o banco
-const prisma = new PrismaClient();
-
-
-@Injectable()
-export class UsuariosService {
-    // Método para criar um novo usuário no banco de dados
-    async create(data: any) {
-        // Chama o método `create` do Prisma, passando os dados recebidos
-        // `data` deve conter os campos obrigatórios definidos no schema.prisma
-        return await prisma.usuario.create({ data });
-    }
-    // Método para buscar todos os usuários cadastrados
-    async findAll() {
-        // Utiliza `findMany` do Prisma para retornar todos os registros da tabela `usuario`
-        return await prisma.usuario.findMany();
-    }
     // Método para buscar um único usuário pelo ID
     async findOne(id: number) {
         // Utiliza `findUnique` com filtro `where` para buscar um usuário com o ID específico
